@@ -1,0 +1,26 @@
+.bg{
+    /* background-image: url("bg1.jpg"); */
+    background-color: #cccccc;
+    height: 100vh;
+}
+.logo:hover .rotate{
+    transform: rotate(-15deg);
+}
+.title{
+    text-align: center;
+    font-size: 6vh;
+    font-weight: 100;
+    font-family: Roboto Thin;
+    color: rgba(100,100,100,0.8);
+    margin-block-end: 0.3em;
+}
+.sub{
+    margin-block-start: 0.1em;
+    margin-block-end: 0px;
+    text-align: center;
+    font-size: 2vh;
+    font-family: Roboto Thin;
+    font-style: oblique;
+    font-weight: 100;
+    color: rgba(100,100,100,0.8);
+}

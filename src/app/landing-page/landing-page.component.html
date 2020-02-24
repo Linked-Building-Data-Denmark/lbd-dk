@@ -1,0 +1,29 @@
+<div fxLayout="column" fxLayoutAlign="center center" class="bg" fxLayoutGap="5vh">
+
+    <div fxFlex="10%">
+        <p class="title">Velkommen til LBD DK</p>
+        <p class="sub">Vi brygger på noget fedt! Men først skal bryggen gære, og det tager den tid sådan noget tager!</p>
+        <p class="sub">Indtil videre må du nøjes med en af nedenstående kanaler</p>
+    </div>
+
+    <div  fxFlex="40%" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10vw">
+
+        <div fxLayout="column" fxLayoutAlign="center center" class="clickable">
+            <div class="logo" (click)="openSlack()">
+                <img class="rotate" src="assets/slack1.svg" height="100vh">
+                <img src="assets/slack2.svg" height="100vh">
+            </div>
+            <p>{{joinSlack | value}}</p>
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="center center" class="clickable">
+            <div class="logo" (click)="openFB()">
+                <img class="rotate" src="assets/facebook1.svg" height="100vh">
+                <img src="assets/facebook2.svg" height="100vh">
+            </div>
+            <p>{{joinFB | value}}</p>
+        </div>
+
+    </div>
+
+</div>
