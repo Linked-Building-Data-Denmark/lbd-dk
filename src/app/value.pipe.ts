@@ -20,20 +20,21 @@ export class Value{
 })
 export class ValuePipe implements PipeTransform {
 
-  public lang: string;
-
   constructor(
-    private _g: GlobalsService
-  ){
-    this._g.getLanguage().subscribe(lang => {
-      this.lang = lang;
-    }, err => console.log(err));
-  }
+    private g: GlobalsService
+  ){}
 
   transform(value: unknown, ...args: unknown[]): unknown {
 
+    // Get language from URL query param
+    const urlParams = new URLSearchParams(window.location.search);
+    var lang = urlParams.get('lang');
+
+    // Default to danish
+    if(!this.g.supportedLanguages.includes(lang)) lang = 'da';
+
     if(Array.isArray(value)){
-      const match = value.find(v => v['@lang'] == this.lang);
+      const match = value.find(v => v['@lang'] == lang);
       if(match && match['@value']){
         value = match['@value'];
       }

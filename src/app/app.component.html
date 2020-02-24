@@ -1,1 +1,13 @@
-<app-landing-page></app-landing-page>
+<div class="header" fxLayout="row" fxLayoutAlign="end">
+    <span fxFlex="grow" style="cursor:default">
+        <span *ngFor="let item of languages; let i = index">
+            <span
+                [style.font-weight]="selectedLanguage == item ? 500 : 100"
+                class="clickable"
+                (click)="changeLanguage(item)">{{item}}
+            </span> 
+            <span *ngIf="i < languages.length-1"> | </span>
+        </span>
+    </span>
+</div>
+<router-outlet></router-outlet>

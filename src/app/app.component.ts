@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
 import { GlobalsService } from './globals.service';
 
 @Component({
@@ -9,21 +8,33 @@ import { GlobalsService } from './globals.service';
 })
 export class AppComponent implements OnInit{
 
-  public language = 'frontend';
+  public languages;
+  public selectedLanguage = "da";
+  public params: any = {lang: null};
 
   constructor(
-    private route: ActivatedRoute,
     private g: GlobalsService
   ){}
 
   ngOnInit(){
 
-    this.route.queryParams.subscribe(params => {
-      if(params['lang'] == undefined) return;
-      this.language = params['lang'];
-      this.g.setLanguage(this.language);
-    });
+    this.languages = this.g.supportedLanguages;
+
+    // Get language from URL query param
+    this.params = new URLSearchParams(window.location.search);
+    var lang = this.params.get('lang');
+    if(lang) this.selectedLanguage = lang;
+  
+  }
+
+  changeLanguage(lang){
+    this.selectedLanguage = lang;
+    this.params.lang = lang;
+    this.g.setLanguage(this.selectedLanguage);
     
+    // Reload page
+    let qp = Object.entries(this.params).map(([key, val]) => `${key}=${val}`).join('&');        
+    window.location.href = window.location.pathname+"?"+qp;
   }
 
 }
