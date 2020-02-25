@@ -1,0 +1,18 @@
+<div fxFlex="grow" fxLayout="column">
+    <p *ngIf="!session">{{notLoggedInText | value}}</p>
+
+    <p *ngIf="session && session.webId">{{loggedInText | value}} {{session.webId}}</p>
+
+    <div fxFlex="grow" fxLayout="row">
+        <button (click)="logout()" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
+    </div>
+
+    <div fxLayout="column" *ngIf="!session">
+        <p>{{loginText | value}}</p>
+        <div fxFlex="grow" fxLayout="row">
+            <button fxFlex="20%" mat-stroked-button (click)="login('https://solid.community')">Solid Community</button>
+            <button fxFlex="20%" mat-stroked-button (click)="login('https://inrupt.net/')">Inrupt</button>
+            <button fxFlex="20%" mat-stroked-button>Custom</button>
+        </div>
+    </div>
+</div>
