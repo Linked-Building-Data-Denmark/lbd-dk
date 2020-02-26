@@ -1,10 +1,18 @@
 <div fxFlex="grow" fxLayout="column">
     <p *ngIf="!session">{{notLoggedInText | value}}</p>
 
-    <p *ngIf="session && session.webId">{{loggedInText | value}} {{session.webId}}</p>
+    <div fxFlex="grow" fxLayout="column" *ngIf="session && session.webId">
 
-    <div fxFlex="grow" fxLayout="row">
-        <button (click)="logout()" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
+        <p>{{loggedInText | value}} {{session.webId}}</p>
+
+        <p>{{userName}}</p>
+
+        <button mat-stroked-button (click)="getProfile()">Test</button>
+
+        <div fxFlex="grow" fxLayout="row">
+            <button (click)="logout()" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
+        </div>
+
     </div>
 
     <div fxLayout="column" *ngIf="!session">
@@ -15,4 +23,5 @@
             <button fxFlex="20%" mat-stroked-button>Custom</button>
         </div>
     </div>
+
 </div>

@@ -2,13 +2,14 @@
   "name": "frontend",
   "version": "0.0.0",
   "scripts": {
+    "preinstall": "npm cache verify",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "gh-deploy": "angular-cli-ghpages deploy --base-href=/lbd-dk/ --dir=dist/frontend"
+    "gh-deploy": "ng build --prod --base-href=/lbd-dk/ && angular-cli-ghpages deploy --dir=dist/frontend"
   },
   "private": true,
   "dependencies": {
@@ -23,8 +24,17 @@
     "@angular/platform-browser": "~9.0.0-rc.3",
     "@angular/platform-browser-dynamic": "~9.0.0-rc.3",
     "@angular/router": "~9.0.0-rc.3",
+    "@solid/query-ldflex": "^2.9.0",
+    "buffer": "^5.4.3",
+    "n3": "^1.3.5",
+    "process": "^0.11.10",
+    "rdf-namespaces": "^1.8.0",
+    "rdflib": "^1.0.6",
+    "rdflib-ts": "^1.2.58",
     "rxjs": "~6.5.3",
+    "setimmediate": "^1.0.5",
     "solid-auth-client": "^2.4.1",
+    "tripledoc": "^4.2.1",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
@@ -35,6 +45,7 @@
     "@angular/language-service": "~9.0.0-rc.3",
     "@types/jasmine": "~3.4.0",
     "@types/jasminewd2": "~2.0.3",
+    "@types/n3": "^1.1.5",
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",

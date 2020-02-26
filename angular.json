@@ -27,7 +27,10 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/libs/rdflib.min.js",
+              "src/assets/js/libs/tripledoc.min.js"
+            ]
           },
           "configurations": {
             "production": {

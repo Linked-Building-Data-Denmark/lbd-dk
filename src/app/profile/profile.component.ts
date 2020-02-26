@@ -12,6 +12,8 @@ import { Value } from '../value.pipe';
 export class ProfileComponent implements OnInit {
 
   public session;
+  public webId;
+  public userName;
 
   public notLoggedInText = [
     new Value("Please log in to see your profile stuff", "en"),
@@ -43,13 +45,15 @@ export class ProfileComponent implements OnInit {
   async getLoginStatus(){
     try{
       this.session = await this.s.getLoginStatus();
-      console.log(this.session);
+      this.webId = this.session.webId;
     }catch(e){console.log("Couldn't get session")} 
   }
 
   async login(idp){
     try{
       this.session = await this.s.login(idp);
+      this.webId = this.session.webId;
+      this.getProfile();
     }catch(e){console.log("Couldn't log in")} 
     
   }
@@ -57,6 +61,16 @@ export class ProfileComponent implements OnInit {
   async logout(){
     await this.s.logOut();
     this.getLoginStatus();
+  }
+
+  async getProfile(){    
+    try{
+      // this.userName = await this.s.getNameTripledoc(this.webId);
+      this.userName = await this.s.getNameRdflib(this.webId);
+    }catch(e){
+      console.log(e)
+      console.log("Couldn't get profile")
+    } 
   }
 
 }
