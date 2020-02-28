@@ -1,17 +1,33 @@
 <div fxFlex="grow" fxLayout="column">
     <p *ngIf="!session">{{notLoggedInText | value}}</p>
 
-    <div fxFlex="grow" fxLayout="column" *ngIf="session && session.webId">
+    <div fxFlex="grow" fxLayout="column" *ngIf="session && session.webId" fxLayoutGap="5px">
 
         <p>{{loggedInText | value}} {{session.webId}}</p>
 
         <p>{{userName}}</p>
 
-        <button mat-stroked-button (click)="getProfile()">Test</button>
+        <button mat-stroked-button [disabled]="profile" (click)="getProfile()">Get profile</button>
 
-        <div fxFlex="grow" fxLayout="row">
-            <button (click)="logout()" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
-        </div>
+        <h4>My public notes</h4>
+        <ul>
+            <li *ngFor="let item of publicNotes">{{item}}</li>
+        </ul>
+
+        <h4>My private notes</h4>
+        <ul>
+            <li *ngFor="let item of privateNotes">{{item}}</li>
+        </ul>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Note</mat-label>
+            <textarea matInput [(ngModel)]="note"></textarea>
+        </mat-form-field>
+
+        <button mat-stroked-button [disabled]="!profile" (click)="saveNote('public')">Save public note</button>
+        <button mat-stroked-button [disabled]="!profile" (click)="saveNote('private')">Save private note</button>
+
+        <button (click)="logout()" color="warn" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
 
     </div>
 

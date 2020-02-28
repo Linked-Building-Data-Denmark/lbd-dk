@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ProfileService } from './profile.service';
 import { Value } from '../value.pipe';
+import { foaf } from 'rdf-namespaces';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,11 @@ export class ProfileComponent implements OnInit {
 
   public session;
   public webId;
-  public userName;
+  public profile;
+  public userName: string;
+  public note: string;
+  public publicNotes: string[];
+  public privateNotes: string[];
 
   public notLoggedInText = [
     new Value("Please log in to see your profile stuff", "en"),
@@ -38,7 +43,9 @@ export class ProfileComponent implements OnInit {
 
   async ngOnInit() {
 
-    this.getLoginStatus();
+    await this.getLoginStatus();
+    await this.getProfile();
+    await this.getNotes();
 
   }
 
@@ -53,8 +60,9 @@ export class ProfileComponent implements OnInit {
     try{
       this.session = await this.s.login(idp);
       this.webId = this.session.webId;
-      this.getProfile();
-    }catch(e){console.log("Couldn't log in")} 
+      const notesListRef = this.getProfile();
+      console.log(notesListRef);
+    }catch(e){console.log(e)} 
     
   }
 
@@ -66,11 +74,24 @@ export class ProfileComponent implements OnInit {
   async getProfile(){    
     try{
       // this.userName = await this.s.getNameTripledoc(this.webId);
-      this.userName = await this.s.getNameRdflib(this.webId);
+      this.profile = await this.s.getProfile(this.webId);
+      this.userName = this.profile.getString(foaf.name);
     }catch(e){
       console.log(e)
       console.log("Couldn't get profile")
-    } 
+    }
+    return;
+  }
+
+  async getNotes(type?){
+    if(!type || type == 'public') this.publicNotes = await this.s.getNotes(this.profile, 'public');
+    if(!type || type == 'private') this.privateNotes = await this.s.getNotes(this.profile, 'private');
+  }
+
+  async saveNote(type){
+    await this.s.addNote(this.note, this.profile, type);
+    this.note = null;
+    await this.getNotes(type);
   }
 
 }
