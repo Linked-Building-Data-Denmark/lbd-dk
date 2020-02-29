@@ -728,14 +728,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var solid_auth_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! solid-auth-client */ "./node_modules/solid-auth-client/browser/index.js");
 /* harmony import */ var solid_auth_client__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(solid_auth_client__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rdf-namespaces */ "./node_modules/rdf-namespaces/dist/index.es.js");
+/* harmony import */ var tripledoc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tripledoc */ "./node_modules/tripledoc/dist/index.es.js");
 
 
 
 
+// declare let Tripledoc: any; // Minified version added in assets/js/libs
 
 
 
-// import { fetchDocument, createDocument } from 'tripledoc';
+
 class ProfileService {
     constructor(http) {
         this.http = http;
@@ -796,7 +798,7 @@ class ProfileService {
     getProfile(webId) {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             /* 1. Fetch the Document at `webId`: */
-            const webIdDoc = yield Tripledoc.fetchDocument(webId);
+            const webIdDoc = yield Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(webId);
             /* 2. Read the Subject representing the current user's profile: */
             return webIdDoc.getSubject(webId);
         });
@@ -805,7 +807,7 @@ class ProfileService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             /* 1. Check if a Document tracking our notes already exists. */
             const typeIndexRef = type == 'public' ? profile.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].publicTypeIndex) : profile.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].privateTypeIndex);
-            const typeIndex = yield Tripledoc.fetchDocument(typeIndexRef);
+            const typeIndex = yield Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(typeIndexRef);
             const notesListEntry = typeIndex.findSubject(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].forClass, rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["schema"].TextDigitalDocument);
             /* 2. If it doesn't exist, create it. */
             if (notesListEntry === null) {
@@ -814,7 +816,7 @@ class ProfileService {
             }
             /* 3. If it does exist, fetch that Document. */
             const notesListRef = notesListEntry.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].instance);
-            return yield Tripledoc.fetchDocument(notesListRef);
+            return yield Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(notesListRef);
         });
     }
     initialiseNotesList(profile, typeIndex, type) {
@@ -824,7 +826,7 @@ class ProfileService {
             // Decide at what URL within the user's Pod the new Document should be stored:
             const notesListRef = storage + `${type}/notes.ttl`;
             // Create the new Document:
-            const notesList = Tripledoc.createDocument(notesListRef);
+            const notesList = Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["createDocument"])(notesListRef);
             yield notesList.save();
             // Store a reference to that Document in the public Type Index for `schema:TextDigitalDocument`:
             const typeRegistration = typeIndex.addSubject();
@@ -840,8 +842,9 @@ class ProfileService {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
             // Get notes list
             const notesList = yield this.getNotesList(profile, type);
-            const notes = notesList.getSubjectsOfType(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["schema"].TextDigitalDocument);
-            return notes.map(note => note.getString(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["schema"].text));
+            console.log(notesList);
+            const notes = notesList.getSubjectsOfType('http://schema.org/TextDigitalDocument');
+            return notes.map(note => note.getString('http://schema.org/text'));
         });
     }
     addNote(note, profile, type) {
