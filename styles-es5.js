@@ -400,11 +400,11 @@
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! C:\Users\mhra\Development\lbd\frontend\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */
+    /*! C:\Users\mhra\Development\lbd\frontend\Angular\node_modules\@angular\material\prebuilt-themes\indigo-pink.css */
     "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css");
 
     module.exports = __webpack_require__(
-    /*! C:\Users\mhra\Development\lbd\frontend\src\styles.css */
+    /*! C:\Users\mhra\Development\lbd\frontend\Angular\src\styles.css */
     "./src/styles.css");
     /***/
   }

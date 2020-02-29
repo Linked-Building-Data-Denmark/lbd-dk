@@ -1558,13 +1558,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! rdf-namespaces */
-    "./node_modules/rdf-namespaces/dist/index.es.js");
-    /* harmony import */
+    "./node_modules/rdf-namespaces/dist/index.es.js"); // import { fetchDocument, createDocument } from 'tripledoc';
 
-
-    var tripledoc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! tripledoc */
-    "./node_modules/tripledoc/dist/index.es.js");
 
     var ProfileService =
     /*#__PURE__*/
@@ -1707,7 +1702,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 switch (_context11.prev = _context11.next) {
                   case 0:
                     _context11.next = 2;
-                    return Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(webId);
+                    return Tripledoc.fetchDocument(webId);
 
                   case 2:
                     webIdDoc = _context11.sent;
@@ -1735,7 +1730,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     /* 1. Check if a Document tracking our notes already exists. */
                     typeIndexRef = type == 'public' ? profile.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].publicTypeIndex) : profile.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].privateTypeIndex);
                     _context12.next = 3;
-                    return Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(typeIndexRef);
+                    return Tripledoc.fetchDocument(typeIndexRef);
 
                   case 3:
                     typeIndex = _context12.sent;
@@ -1753,7 +1748,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     /* 3. If it does exist, fetch that Document. */
                     notesListRef = notesListEntry.getRef(rdf_namespaces__WEBPACK_IMPORTED_MODULE_4__["solid"].instance);
                     _context12.next = 10;
-                    return Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["fetchDocument"])(notesListRef);
+                    return Tripledoc.fetchDocument(notesListRef);
 
                   case 10:
                     return _context12.abrupt("return", _context12.sent);
@@ -1782,7 +1777,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                     notesListRef = storage + "".concat(type, "/notes.ttl"); // Create the new Document:
 
-                    notesList = Object(tripledoc__WEBPACK_IMPORTED_MODULE_5__["createDocument"])(notesListRef);
+                    notesList = Tripledoc.createDocument(notesListRef);
                     _context13.next = 5;
                     return notesList.save();
 
@@ -2190,7 +2185,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   /***/
   function _(module, exports, __webpack_require__) {
     module.exports = __webpack_require__(
-    /*! C:\Users\mhra\Development\lbd\frontend\src\main.ts */
+    /*! C:\Users\mhra\Development\lbd\frontend\Angular\src\main.ts */
     "./src/main.ts");
     /***/
   }
