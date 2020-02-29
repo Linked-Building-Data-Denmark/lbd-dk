@@ -1,0 +1,44 @@
+<div fxFlex="row" fxLayoutAlign="center center">
+
+    <!-- IF USER LOGGED IN -->
+    <mat-card fxFlex.md="50vw" fxFlex.sm="grow" fxLayout="column" *ngIf="session && session.webId" fxLayoutGap="5px">
+
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image" [ngStyle]="{ 'background-image': 'url(' + userPhotoURL + ')'}"></div>
+            <mat-card-title>{{userName}}</mat-card-title>
+            <mat-card-subtitle>{{session.webId}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <h4>My public notes</h4>
+        <ul>
+            <li *ngFor="let item of publicNotes">{{item}}</li>
+        </ul>
+
+        <h4>My private notes</h4>
+        <ul>
+            <li *ngFor="let item of privateNotes">{{item}}</li>
+        </ul>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Note</mat-label>
+            <textarea matInput [(ngModel)]="note"></textarea>
+        </mat-form-field>
+
+        <button mat-stroked-button [disabled]="!profile" (click)="saveNote('public')">Save public note</button>
+        <button mat-stroked-button [disabled]="!profile" (click)="saveNote('private')">Save private note</button>
+
+        <button (click)="logout()" color="warn" *ngIf="session" fxFlex="20%" mat-stroked-button>{{logoutText | value}}</button>
+
+    </mat-card>
+
+    <!-- IF NOT LOGGED IN -->
+    <mat-card fxFlex.md="50vw" fxFlex.sm="grow" fxLayout="column" *ngIf="!session" fxLayoutGap="5px">
+        <p>{{notLoggedInText | value}}</p>
+
+        <p>{{loginText | value}}</p>
+        <button fxFlex="20%" mat-stroked-button (click)="login('https://solid.community')">Solid Community</button>
+        <button fxFlex="20%" mat-stroked-button (click)="login('https://inrupt.net/')">Inrupt</button>
+        <button fxFlex="20%" mat-stroked-button>Custom</button>
+    </mat-card>
+
+</div>
