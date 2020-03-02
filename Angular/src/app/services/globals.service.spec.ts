@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GlobalsService } from './globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 
 describe('GlobalsService', () => {
   let service: GlobalsService;

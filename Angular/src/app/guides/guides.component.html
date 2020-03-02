@@ -1,0 +1,24 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" class="card">
+
+    <!-- Search -->
+    <mat-card fxFlex.sm="grow" fxFlex.md="50vw" fxFlex.lg="50vw" fxFlex.xl="50vw" fxLayout="column" fxLayoutGap="5px">
+        <h4>{{searchGuidesLabel | value}}</h4>
+    </mat-card>
+
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center center" class="card">
+
+    <mat-card fxFlex.md="50vw" fxFlex.sm="grow"  fxFlex.lg="50vw" fxFlex.xl="50vw" *ngIf="session" fxLayout="column" fxLayoutGap="5px">
+        <h4>{{newGuideLabel | value}}</h4>
+
+        <mat-form-field appearance="fill">
+            <mat-label>{{newGuideTitleLabel | value}}</mat-label>
+            <input matInput>
+        </mat-form-field>
+
+        <mhra-markdown-editor></mhra-markdown-editor>
+
+    </mat-card>
+
+</div>

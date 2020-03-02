@@ -1,0 +1,16 @@
+<p>Markdown editor</p>
+
+<mat-toolbar class="toolbar">
+    <mat-icon class="clickable" *ngIf="showPreview" (click)="togglePreview()">visibility_off</mat-icon>
+    <mat-icon class="clickable" *ngIf="!showPreview" (click)="togglePreview()">visibility</mat-icon>
+    <mat-icon class="clickable" (click)="showGuide()">help_outline</mat-icon>
+</mat-toolbar>
+<mat-form-field appearance="fill" *ngIf="!showPreview" class="full-width">
+    <mat-label>Note</mat-label>
+    <textarea matInput [(ngModel)]="text" rows="15"></textarea>
+</mat-form-field>
+
+<!-- Tjek denne: https://angularscript.com/native-wysiwyg-editor-for-angular-6/ -->
+
+<markdown ngPreserveWhitespaces [data]="text" class="preview" (ready)="onReady()" *ngIf="showPreview">
+</markdown>

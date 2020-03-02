@@ -1,12 +1,20 @@
 <div class="header" fxLayout="row" fxLayoutAlign="end">
 
-    <!-- Profile -->
-    <span fxFlex class="clickable" (click)="GoToProfile()">Profile</span>
+    <!-- Menu -->
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item *ngFor="let item of menuItems" (click)="navigateTo(item.path)">
+          <mat-icon>{{item.icon}}</mat-icon>
+          <span>{{item.text | value}}</span>
+        </button>
+      </mat-menu>
 
     <span fxFlex="grow"></span>
 
     <!-- Language selector -->
-    <span fxFlex="grow" style="cursor:default">
+    <span fxFlex="grow" style="cursor:default; padding: 5px">
         <span *ngFor="let item of languages; let i = index">
             <span
                 [style.font-weight]="selectedLanguage == item ? 500 : 100"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GlobalsService } from './globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 import { Router } from '@angular/router';
+import { Value } from './value.pipe';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,19 @@ export class AppComponent implements OnInit{
   public languages;
   public selectedLanguage = "da";
   public params: any = {lang: null};
+
+  public menuItems = [
+    {
+      text: [ new Value("Profile", "en"), new Value("Profil", "da") ],
+      icon: 'person',
+      path: '/profile'
+    },
+    {
+      text: [ new Value("Guides", "en"), new Value("Vejledninger", "da") ],
+      icon: 'school',
+      path: '/guides'
+    }
+  ]
 
   constructor(
     private g: GlobalsService,
@@ -39,8 +53,9 @@ export class AppComponent implements OnInit{
     window.location.href = window.location.pathname+"?"+qp;
   }
 
-  GoToProfile(){
-    this._router.navigate(['/profile']);
+  navigateTo(path){
+    console.log(path)
+    this._router.navigate([path]);
   }
 
 }

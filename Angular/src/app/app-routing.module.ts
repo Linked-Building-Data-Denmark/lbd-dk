@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from 'src/app/profile/profile.component';
+import { GuidesComponent } from 'src/app/guides/guides.component';
 import { LandingPageComponent } from 'src/app/landing-page/landing-page.component';
 
 const routes: Routes = [
@@ -8,6 +9,10 @@ const routes: Routes = [
   { 
     path: 'profile', 
     component: ProfileComponent
+  },
+  { 
+    path: 'guides', 
+    component: GuidesComponent
   },
   // { path: 'welcome', component: LandingPageComponent }
 ];

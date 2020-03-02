@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GlobalsService } from './globals.service';
+import { GlobalsService } from 'src/app/services/globals.service';
 
 export class Value{
   public '@value';

@@ -1,66 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
-import auth from 'solid-auth-client';
 // declare let Tripledoc: any; // Minified version added in assets/js/libs
 import { foaf, solid, schema, space, rdf } from 'rdf-namespaces';
 import { fetchDocument, createDocument } from 'tripledoc';
+import { UserService } from '../services/user.service';
 
 @Injectable()
-export class ProfileService {
-
-    public session;
+export class ProfileService extends UserService {
 
     constructor(
         private http: HttpClient
-    ){}
-
-    test(){
-        auth.trackSession(session => {
-            if (!session)
-              console.log('The user is not logged in')
-            else
-              console.log(`The user is ${session.webId}`)
-          })
-    }
-
-    getLoginStatus(){
-        return new Promise((resolve, reject) => {
-            auth.trackSession(session => {
-                if(!session){
-                    resolve(false);
-                }else{
-                    this.session = session;
-                    resolve(session);
-                }
-            })
-        })
-    }
-
-    // NB! Also possible to choose other options than community
-    async login(idp?){
-        if(!idp) idp = 'https://solid.community';
-        const session = await auth.currentSession();
-        if (!session){
-            await auth.login(idp);
-            return session;
-        }
-        else{
-            return session;
-        }
-    }
-
-    async popupLogin() {
-        let session = await auth.currentSession();
-        let popupUri = 'https://solid.community/common/popup.html';
-        // if (!session)
-        //   session = await auth.popupLogin({ popupUri });
-        alert(`Logged in as ${session.webId}`);
-    }
-
-    async logOut(){
-        return await auth.logout();
-    }
+    ){super()}
 
     // Tripledoc seems to be pretty popular!
     // Continue here: https://solidproject.org/for-developers/apps/first-app/3-reading-data
