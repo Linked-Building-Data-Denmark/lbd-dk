@@ -11,10 +11,12 @@
         </button>
       </mat-menu>
 
+    <span fxFlex="20%" class="clickable title-logo" (click)="navigateTo('/')">lbd-dk</span>
+
     <span fxFlex="grow"></span>
 
     <!-- Language selector -->
-    <span fxFlex="grow" style="cursor:default; padding: 5px">
+    <span fxFlex="grow" style="cursor:default; padding: 10px">
         <span *ngFor="let item of languages; let i = index">
             <span
                 [style.font-weight]="selectedLanguage == item ? 500 : 100"

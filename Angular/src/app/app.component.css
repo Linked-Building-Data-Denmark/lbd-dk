@@ -2,3 +2,8 @@
     padding: 1vw;
     text-align: right
 }
+.title-logo{
+    padding: 10px; 
+    text-align: left;
+    font-family: Roboto thin;
+}
