@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import auth from 'solid-auth-client';
+import { fetchDocument } from 'tripledoc';
 
 @Injectable()
 export class UserService {
@@ -42,6 +43,15 @@ export class UserService {
                 }
             })
         })
+    }
+
+    // Tripledoc seems to be pretty popular!
+    // Continue here: https://solidproject.org/for-developers/apps/first-app/3-reading-data
+    async getProfile(webId){
+        /* 1. Fetch the Document at `webId`: */
+        const webIdDoc = await fetchDocument(webId);
+        /* 2. Read the Subject representing the current user's profile: */
+        return webIdDoc.getSubject(webId);
     }
 
 }

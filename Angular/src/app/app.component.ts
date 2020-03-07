@@ -55,7 +55,7 @@ export class AppComponent implements OnInit{
 
   navigateTo(path){
     console.log(path)
-    this._router.navigate([path]);
+    this._router.navigate([path], { queryParamsHandling: "merge" });
   }
 
 }

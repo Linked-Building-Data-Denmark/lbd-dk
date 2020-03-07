@@ -1,16 +1,30 @@
-<p>Markdown editor</p>
+<md-toolbar 
+    (onTogglePreview)="showPreview = $event"
+    (onUndo)="onUndo()"
+    [selectedText]="selectedText"
+    (onSelectionFormat)="updateSelection($event)"
+    (onTextInsert)="insertText($event)">
+</md-toolbar>
 
-<mat-toolbar class="toolbar">
-    <mat-icon class="clickable" *ngIf="showPreview" (click)="togglePreview()">visibility_off</mat-icon>
-    <mat-icon class="clickable" *ngIf="!showPreview" (click)="togglePreview()">visibility</mat-icon>
-    <mat-icon class="clickable" (click)="showGuide()">help_outline</mat-icon>
-</mat-toolbar>
-<mat-form-field appearance="fill" *ngIf="!showPreview" class="full-width">
-    <mat-label>Note</mat-label>
-    <textarea matInput [(ngModel)]="text" rows="15"></textarea>
-</mat-form-field>
+<perfect-scrollbar [style.height]="height">
 
-<!-- Tjek denne: https://angularscript.com/native-wysiwyg-editor-for-angular-6/ -->
+    <mat-form-field appearance="fill" *ngIf="!showPreview" class="full-width">
+        <mat-label>Markdown</mat-label>
+        <textarea 
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="10"
+            cdkAutosizeMaxRows="200"
+            [(ngModel)]="text" 
+            (click)="handleClickSelect($event)" 
+            (keyup)="handleClickSelect($event)"
+            (select)="handleClickSelect($event)"
+        ></textarea>
+    </mat-form-field>
 
-<markdown ngPreserveWhitespaces [data]="text" class="preview" (ready)="onReady()" *ngIf="showPreview">
-</markdown>
+    <!-- Tjek denne: https://angularscript.com/native-wysiwyg-editor-for-angular-6/ -->
+
+    <markdown class="viewer" ngPreserveWhitespaces [data]="text" class="preview" (ready)="onReady()" *ngIf="showPreview">
+    </markdown>
+</perfect-scrollbar>

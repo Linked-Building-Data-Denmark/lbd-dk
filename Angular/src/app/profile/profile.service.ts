@@ -13,15 +13,6 @@ export class ProfileService extends UserService {
         private http: HttpClient
     ){super()}
 
-    // Tripledoc seems to be pretty popular!
-    // Continue here: https://solidproject.org/for-developers/apps/first-app/3-reading-data
-    async getProfile(webId){
-        /* 1. Fetch the Document at `webId`: */
-        const webIdDoc = await fetchDocument(webId);
-        /* 2. Read the Subject representing the current user's profile: */
-        return webIdDoc.getSubject(webId);
-    }
-
     async getNotesList(profile, type){
 
         if(!profile || profile == undefined) return;

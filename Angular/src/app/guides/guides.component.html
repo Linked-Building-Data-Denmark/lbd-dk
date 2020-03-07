@@ -12,12 +12,25 @@
     <mat-card fxFlex.md="50vw" fxFlex.sm="grow"  fxFlex.lg="50vw" fxFlex.xl="50vw" *ngIf="session" fxLayout="column" fxLayoutGap="5px">
         <h4>{{newGuideLabel | value}}</h4>
 
+        <!-- Title -->
         <mat-form-field appearance="fill">
             <mat-label>{{newGuideTitleLabel | value}}</mat-label>
-            <input matInput>
+            <input matInput [(ngModel)]="guideTitle">
         </mat-form-field>
 
-        <mhra-markdown-editor></mhra-markdown-editor>
+        <!-- Language -->
+        <mat-form-field appearance="fill">
+            <mat-label>{{newGuideLanguageLabel | value}}</mat-label>
+            <mat-select [(value)]="guideLanguage">
+                <mat-option *ngFor="let item of languages" [value]="item.value">{{item.text | value}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mhra-markdown-editor height="300px" (onTextChange)="guideText = $event"></mhra-markdown-editor>
+
+        <p style="color: red">{{wipLabel | value}}</p>
+        <!-- <button [disabled]="!guideTitle || !guideText || !guideLanguage" mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button> -->
+        <button mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button>
 
     </mat-card>
 

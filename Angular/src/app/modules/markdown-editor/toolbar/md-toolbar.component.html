@@ -1,0 +1,38 @@
+<mat-toolbar class="toolbar" fxLayout="row" fxLayoutGap="20px">
+
+    <!-- Heading -->
+    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+        <fa-icon class="clickable" [icon]="faHeading" [matTooltip]="headingTooltip" (click)="insertHeading()"></fa-icon>
+        <fa-icon class="clickable fa-xs" [icon]="faHeading" [matTooltip]="subHeadingTooltip" (click)="insertSubHeading()"></fa-icon>
+    </div>
+
+    <!-- List -->
+    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+        <fa-icon class="clickable" [icon]="faListOl" [matTooltip]="olTooltip" (click)="appendOl()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faListUl" [matTooltip]="ulTooltip" (click)="appendUl()"></fa-icon>
+    </div>
+
+    <!-- Font -->
+    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+        <fa-icon class="clickable" [icon]="faBold" [matTooltip]="boldTooltip" (click)="appendBold()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faItalic" [matTooltip]="italicTooltip" (click)="appendItalic()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faQuoteRight" [matTooltip]="quoteTooltip" (click)="appendQuote()"></fa-icon>
+    </div>
+
+    <!-- Image/video -->
+    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+        <fa-icon class="clickable" [icon]="faLink" [matTooltip]="linkTooltip" (click)="insertLink()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faImage" [matTooltip]="imageTooltip" (click)="insertImage()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faCode" [matTooltip]="codeTooltip" (click)="insertCode()"></fa-icon>
+        <!-- <fa-icon class="clickable" [icon]="faVideo" [matTooltip]="videoTooltip" (click)="insertVideo()"></fa-icon> -->
+    </div>
+
+    <fa-icon class="clickable" [icon]="faUndo" [matTooltip]="undoTooltip" (click)="undo()"></fa-icon>
+
+    <div fxFlex="grow"></div>
+    
+    <fa-icon [style.color]="previewColor" [icon]="faEyeSlash" class="clickable" *ngIf="showPreview" (click)="togglePreview()" [matTooltip]="hidePreviewTooltip"></fa-icon>
+    <fa-icon [style.color]="previewColor" [icon]="faEye" class="clickable" *ngIf="!showPreview" (click)="togglePreview()" [matTooltip]="showPreviewTooltip"></fa-icon>
+    <fa-icon [icon]="faInfo" class="clickable" (click)="showGuide()"></fa-icon>
+
+</mat-toolbar>
