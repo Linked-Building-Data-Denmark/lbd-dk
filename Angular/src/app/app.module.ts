@@ -13,6 +13,14 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
+
 // App modules
 import { MarkdownEditorModule } from 'src/app/modules/markdown-editor/markdown-editor.module';
 
@@ -42,6 +50,7 @@ import { GuidesComponent } from './guides/guides.component';
     BrowserModule,
     FormsModule,
     MarkdownEditorModule,
+    PerfectScrollbarModule,
     HttpClientModule,
     AppRoutingModule,
     MatButtonModule,
@@ -56,7 +65,11 @@ import { GuidesComponent } from './guides/guides.component';
   ],
   providers: [
     GlobalsService,
-    UserService
+    UserService,
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })

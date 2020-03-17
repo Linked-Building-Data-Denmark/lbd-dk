@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="5px" class="card">
 
     <!-- Search -->
-    <mat-card fxFlex.sm="grow" fxFlex.md="50vw" fxFlex.lg="50vw" fxFlex.xl="50vw" fxLayout="column" fxLayoutGap="5px">
+    <mat-card fxFlex.lt-sm="grow" fxFlex.gt-sm="50vw" fxLayout="column" fxLayoutGap="5px">
         <h4>{{searchGuidesLabel | value}}</h4>
     </mat-card>
 
@@ -9,28 +9,32 @@
 
 <div fxLayout="row" fxLayoutAlign="center center" class="card">
 
-    <mat-card fxFlex.md="50vw" fxFlex.sm="grow"  fxFlex.lg="50vw" fxFlex.xl="50vw" *ngIf="session" fxLayout="column" fxLayoutGap="5px">
+    <mat-card fxFlex.lt-sm="grow" fxFlex.gt-sm="50vw" *ngIf="session">
         <h4>{{newGuideLabel | value}}</h4>
 
-        <!-- Title -->
-        <mat-form-field appearance="fill">
-            <mat-label>{{newGuideTitleLabel | value}}</mat-label>
-            <input matInput [(ngModel)]="guideTitle">
-        </mat-form-field>
+        <perfect-scrollbar style="height: 70vh" fxLayout="column" fxLayoutGap="5px">
 
-        <!-- Language -->
-        <mat-form-field appearance="fill">
-            <mat-label>{{newGuideLanguageLabel | value}}</mat-label>
-            <mat-select [(value)]="guideLanguage">
-                <mat-option *ngFor="let item of languages" [value]="item.value">{{item.text | value}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+            <!-- Title -->
+            <mat-form-field appearance="fill" fxFlex="grow">
+                <mat-label>{{newGuideTitleLabel | value}}</mat-label>
+                <input matInput [(ngModel)]="guideTitle">
+            </mat-form-field>
 
-        <mhra-markdown-editor height="300px" (onTextChange)="guideText = $event"></mhra-markdown-editor>
+            <!-- Language -->
+            <mat-form-field appearance="fill"  fxFlex="grow">
+                <mat-label>{{newGuideLanguageLabel | value}}</mat-label>
+                <mat-select [(value)]="guideLanguage">
+                    <mat-option *ngFor="let item of languages" [value]="item.value">{{item.text | value}}</mat-option>
+                </mat-select>
+            </mat-form-field>
 
-        <p style="color: red">{{wipLabel | value}}</p>
-        <!-- <button [disabled]="!guideTitle || !guideText || !guideLanguage" mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button> -->
-        <button mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button>
+            <mhra-markdown-editor height="300px" (onTextChange)="guideText = $event"></mhra-markdown-editor>
+
+            <p style="color: red">{{wipLabel | value}}</p>
+            <!-- <button [disabled]="!guideTitle || !guideText || !guideLanguage" mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button> -->
+            <button mat-stroked-button (click)="publishGuide()">{{publishGuideLabel | value}}</button>
+
+        </perfect-scrollbar>
 
     </mat-card>
 

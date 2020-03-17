@@ -1,3 +1,22 @@
+<!-- Only visible on small screens -->
+<mat-toolbar fxShow fxHide.md="true" fxHide.lg="true" fxHide.xl="true" class="toolbar" fxLayout="row" fxLayoutGap="20px">
+    <!-- Image/video -->
+    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+        <fa-icon class="clickable" [icon]="faLink" [matTooltip]="linkTooltip" (click)="insertLink()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faImage" [matTooltip]="imageTooltip" (click)="insertImage()"></fa-icon>
+        <fa-icon class="clickable" [icon]="faCode" [matTooltip]="codeTooltip" (click)="insertCode()"></fa-icon>
+        <!-- <fa-icon class="clickable" [icon]="faVideo" [matTooltip]="videoTooltip" (click)="insertVideo()"></fa-icon> -->
+    </div>
+
+    <div fxFlex="grow"></div>
+    
+    <fa-icon class="clickable" [icon]="faUndo" [matTooltip]="undoTooltip" (click)="undo()"></fa-icon>
+    <div fxFlex="grow"></div>
+    <fa-icon [style.color]="previewColor" [icon]="faEyeSlash" class="clickable" *ngIf="showPreview" (click)="togglePreview()" [matTooltip]="hidePreviewTooltip"></fa-icon>
+    <fa-icon [style.color]="previewColor" [icon]="faEye" class="clickable" *ngIf="!showPreview" (click)="togglePreview()" [matTooltip]="showPreviewTooltip"></fa-icon>
+    <fa-icon [icon]="faInfo" class="clickable" (click)="showGuide()"></fa-icon>
+</mat-toolbar>
+
 <mat-toolbar class="toolbar" fxLayout="row" fxLayoutGap="20px">
 
     <!-- Heading -->
@@ -19,20 +38,24 @@
         <fa-icon class="clickable" [icon]="faQuoteRight" [matTooltip]="quoteTooltip" (click)="appendQuote()"></fa-icon>
     </div>
 
-    <!-- Image/video -->
-    <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
-        <fa-icon class="clickable" [icon]="faLink" [matTooltip]="linkTooltip" (click)="insertLink()"></fa-icon>
-        <fa-icon class="clickable" [icon]="faImage" [matTooltip]="imageTooltip" (click)="insertImage()"></fa-icon>
-        <fa-icon class="clickable" [icon]="faCode" [matTooltip]="codeTooltip" (click)="insertCode()"></fa-icon>
-        <!-- <fa-icon class="clickable" [icon]="faVideo" [matTooltip]="videoTooltip" (click)="insertVideo()"></fa-icon> -->
+    <!-- Only visible on large screens -->
+    <div fxFlex fxLayout="row" fxLayoutGap="10px" fxShow fxHide.xs="true" fxHide.sm="true">
+
+        <!-- Image/video -->
+        <div class="icon-group" fxLayout="row" fxLayoutGap="10px">
+            <fa-icon class="clickable" [icon]="faLink" [matTooltip]="linkTooltip" (click)="insertLink()"></fa-icon>
+            <fa-icon class="clickable" [icon]="faImage" [matTooltip]="imageTooltip" (click)="insertImage()"></fa-icon>
+            <fa-icon class="clickable" [icon]="faCode" [matTooltip]="codeTooltip" (click)="insertCode()"></fa-icon>
+            <!-- <fa-icon class="clickable" [icon]="faVideo" [matTooltip]="videoTooltip" (click)="insertVideo()"></fa-icon> -->
+        </div>
+
+        <div fxFlex="grow"></div>
+        
+        <fa-icon class="clickable" [icon]="faUndo" [matTooltip]="undoTooltip" (click)="undo()"></fa-icon>
+        <div fxFlex="grow"></div>
+        <fa-icon [style.color]="previewColor" [icon]="faEyeSlash" class="clickable" *ngIf="showPreview" (click)="togglePreview()" [matTooltip]="hidePreviewTooltip"></fa-icon>
+        <fa-icon [style.color]="previewColor" [icon]="faEye" class="clickable" *ngIf="!showPreview" (click)="togglePreview()" [matTooltip]="showPreviewTooltip"></fa-icon>
+        <fa-icon [icon]="faInfo" class="clickable" (click)="showGuide()"></fa-icon>
     </div>
-
-    <fa-icon class="clickable" [icon]="faUndo" [matTooltip]="undoTooltip" (click)="undo()"></fa-icon>
-
-    <div fxFlex="grow"></div>
-    
-    <fa-icon [style.color]="previewColor" [icon]="faEyeSlash" class="clickable" *ngIf="showPreview" (click)="togglePreview()" [matTooltip]="hidePreviewTooltip"></fa-icon>
-    <fa-icon [style.color]="previewColor" [icon]="faEye" class="clickable" *ngIf="!showPreview" (click)="togglePreview()" [matTooltip]="showPreviewTooltip"></fa-icon>
-    <fa-icon [icon]="faInfo" class="clickable" (click)="showGuide()"></fa-icon>
 
 </mat-toolbar>

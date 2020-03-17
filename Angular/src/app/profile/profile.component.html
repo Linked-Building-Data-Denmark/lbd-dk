@@ -9,18 +9,24 @@
             <mat-card-subtitle>{{session.webId}}</mat-card-subtitle>
         </mat-card-header>
 
-        <h4>My public notes</h4>
-        <ul>
-            <li *ngFor="let item of publicNotes">{{item}}</li>
-        </ul>
+        <perfect-scrollbar style="height: 35vh">
 
-        <h4>My private notes</h4>
-        <ul>
-            <li *ngFor="let item of privateNotes">{{item}}</li>
-        </ul>
+            <h4>My public notes</h4>
+            <ul>
+                <li *ngFor="let item of publicNotes">{{item}}</li>
+            </ul>
+
+            <div *ngIf="session">
+                <h4>My private notes</h4>
+                <ul>
+                    <li *ngFor="let item of privateNotes">{{item}}</li>
+                </ul>
+            </div>
+
+        </perfect-scrollbar>
 
         <mat-form-field appearance="fill">
-            <mat-label>Note</mat-label>
+            <mat-label>New note</mat-label>
             <textarea matInput [(ngModel)]="note"></textarea>
         </mat-form-field>
 

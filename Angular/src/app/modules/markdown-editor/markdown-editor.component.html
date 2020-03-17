@@ -6,7 +6,7 @@
     (onTextInsert)="insertText($event)">
 </md-toolbar>
 
-<perfect-scrollbar [style.height]="height">
+<!-- <perfect-scrollbar [style.height]="height"> -->
 
     <mat-form-field appearance="fill" *ngIf="!showPreview" class="full-width">
         <mat-label>Markdown</mat-label>
@@ -27,4 +27,4 @@
 
     <markdown class="viewer" ngPreserveWhitespaces [data]="text" class="preview" (ready)="onReady()" *ngIf="showPreview">
     </markdown>
-</perfect-scrollbar>
+<!-- </perfect-scrollbar> -->
